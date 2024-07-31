@@ -1,0 +1,45 @@
+.search-bar {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+input {
+    font-size: 1.2rem;
+    padding: 0.75rem 4rem 0.75rem 0.75rem;
+    width: 100%;
+    border-radius: 1rem;
+    color: var(--a-color);
+    background-color: var(--b-bg-color);
+    border: none;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border: 1px solid var(--a-color);
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 0 0.75rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: inherit;
+}
+
+button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}

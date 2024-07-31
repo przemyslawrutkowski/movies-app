@@ -1,0 +1,35 @@
+.genres-list-container {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid var(--a-color);
+    border-radius: 0.5rem;
+}
+
+.genres-list-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.genres-list {
+    list-style-type: none;
+}
+
+.genre-item {
+    margin-bottom: 8px;
+}
+
+.genre-item:last-child {
+    margin-bottom: 0;
+}
+
+.genre-link {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--b-color);
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.genre-link:hover {
+    color: var(--c-color);
+}

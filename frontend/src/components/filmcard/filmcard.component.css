@@ -1,0 +1,40 @@
+.film-card {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.poster-container img {
+    width: 150px;
+    height: auto;
+    border-radius: 1rem;
+}
+
+.title {
+    font-size: 1.1rem;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.rating svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.2rem;
+}
+
+.year {
+    font-size: 0.9rem;
+    padding: 0.1rem;
+    color: var(--a-color);
+    background-color: var(--b-bg-color);
+}
