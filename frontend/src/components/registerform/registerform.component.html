@@ -1,0 +1,27 @@
+<form id="sign-up-form">
+    <fieldset>
+        <legend>Sign Up</legend>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email">
+        </p>
+        <p>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Choose a username">
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password">
+        </p>
+        <p>
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm your password">
+        </p>
+        <p class="submit-button-container">
+            <button type="submit">Sign Up</button>
+        </p>
+        <p class="account-navigation">
+            Already have an account? <a [routerLink]="['/login']">Sign In</a>
+        </p>
+    </fieldset>
+</form>

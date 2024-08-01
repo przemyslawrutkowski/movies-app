@@ -1,0 +1,72 @@
+form {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+fieldset {
+    padding: 1.5rem;
+    border: 1px solid var(--a-color);
+    border-radius: 1rem;
+}
+
+legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--a-color);
+    margin: 0 auto;
+}
+
+form p {
+    margin-bottom: 1rem;
+}
+
+form p:last-child {
+    margin-bottom: 0;
+}
+
+form label,
+form input {
+    display: block;
+    width: 100%;
+}
+
+form input {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    color: var(--a-color);
+    background-color: var(--b-bg-color);
+    border: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border: 1px solid var(--a-color);
+}
+
+form button {
+    color: var(--a-color);
+    background-color: inherit;
+    font-size: 1rem;
+    border: 1px solid var(--a-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--a-color);
+    color: var(--b-bg-color);
+}
+
+.submit-button-container,
+.account-navigation {
+    text-align: center;
+}
+
+.account-navigation a {
+    color: var(--d-color);
+}
