@@ -36,7 +36,7 @@ form input {
     width: 100%;
     border-radius: 0.5rem;
     color: var(--a-color);
-    background-color: var(--b-bg-color);
+    background-color: var(--c-bg-color);
     border: none;
 }
 
@@ -55,11 +55,12 @@ form button {
     border-radius: 0.5rem;
     padding: 0.5rem;
     transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
 }
 
 form button:hover {
     background-color: var(--a-color);
-    color: var(--b-bg-color);
+    color: var(--a-bg-color);
 }
 
 .submit-button-container,

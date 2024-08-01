@@ -1,0 +1,9 @@
+<section id="movies-list">
+    <app-searchbar></app-searchbar>
+    <app-genreslist></app-genreslist>
+    <div class="movies-list-container">
+        @for(movieEntry of movies; track movieEntry._id) {
+        <app-moviecard [movie]="movieEntry"></app-moviecard>
+        }
+    </div>
+</section>

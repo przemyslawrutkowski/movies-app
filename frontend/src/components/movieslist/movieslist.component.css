@@ -1,0 +1,43 @@
+#movies-list {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    gap: 2rem 2rem;
+    grid-template-areas:
+        "searchbar searchbar"
+        "genreslist movies-list-container";
+}
+
+app-searchbar {
+    grid-area: searchbar;
+}
+
+app-genreslist {
+    grid-area: genreslist;
+}
+
+.movies-list-container {
+    grid-area: movies-list-container;
+
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    gap: 2rem;
+}
+
+@media(width < 925px) {
+    .movies-list-container {
+        grid-template-columns: repeat(3, 150px);
+    }
+}
+
+@media(width < 768px) {
+    .movies-list-container {
+        grid-template-columns: repeat(2, 150px);
+    }
+}
+
+@media(width < 576px) {
+    .movies-list-container {
+        grid-template-columns: repeat(1, 150px);
+    }
+}

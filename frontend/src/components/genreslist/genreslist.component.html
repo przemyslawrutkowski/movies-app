@@ -1,9 +1,9 @@
 <div class="genres-list-container">
     <h3 class="genres-list-title">Genres</h3>
     <ul class="genres-list">
-        @for(genre of genres; track genre._id) {
+        @for(genreEntry of genres; track genreEntry._id) {
         <li class="genre-item">
-            <a class="genre-link">{{ genre.name }}</a>
+            <a class="genre-link">{{ genreEntry.name }}</a>
         </li>
         }
     </ul>
