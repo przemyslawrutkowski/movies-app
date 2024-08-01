@@ -1,43 +1,54 @@
 #movies-list {
     display: grid;
+    grid-template-columns: repeat(4, 150px);
     grid-template-rows: auto auto;
-    grid-template-columns: auto auto;
-    gap: 2rem 2rem;
+    gap: 2rem;
     grid-template-areas:
-        "searchbar searchbar"
-        "genreslist movies-list-container";
+        "search-bar search-bar search-bar search-bar"
+        "genres-list genres-list genres-list genres-list"
+        "movies-list  movies-list  movies-list  movies-list";
 }
 
 app-searchbar {
-    grid-area: searchbar;
+    grid-area: search-bar;
 }
 
 app-genreslist {
-    grid-area: genreslist;
+    grid-area: genres-list;
 }
 
 .movies-list-container {
-    grid-area: movies-list-container;
+    grid-area: movies-list;
 
     display: grid;
     grid-template-columns: repeat(4, 150px);
     gap: 2rem;
 }
 
-@media(width < 925px) {
+@media(width < 768px) {
+    #movies-list {
+        grid-template-columns: repeat(3, 150px);
+        grid-template-areas:
+            "search-bar search-bar search-bar"
+            "genres-list genres-list genres-list"
+            "movies-list movies-list movies-list";
+    }
+
     .movies-list-container {
         grid-template-columns: repeat(3, 150px);
     }
 }
 
-@media(width < 768px) {
+@media(width < 576px) {
+    #movies-list {
+        grid-template-columns: repeat(2, 150px);
+        grid-template-areas:
+            "search-bar search-bar"
+            "genres-list genres-list"
+            "movies-list movies-list";
+    }
+
     .movies-list-container {
         grid-template-columns: repeat(2, 150px);
-    }
-}
-
-@media(width < 576px) {
-    .movies-list-container {
-        grid-template-columns: repeat(1, 150px);
     }
 }

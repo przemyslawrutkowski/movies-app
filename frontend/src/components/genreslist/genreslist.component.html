@@ -3,7 +3,8 @@
     <ul class="genres-list">
         @for(genreEntry of genres; track genreEntry._id) {
         <li class="genre-item">
-            <a class="genre-link">{{ genreEntry.name }}</a>
+            <input type="checkbox" id="genre-{{ genreEntry._id }}" class="genre-checkbox">
+            <label for="genre-{{ genreEntry._id }}" class="genre-label">{{ genreEntry.name }}</label>
         </li>
         }
     </ul>
