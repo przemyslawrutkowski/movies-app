@@ -20,6 +20,10 @@ export class MoviesListComponent implements OnInit {
   private movies: MovieI[] = [];
   public filteredMovies: MovieI[] = [];
 
+  private selectedGenres: GenreI[] = [];
+  private searchedPhrase: string = "";
+
+
   ngOnInit() {
     this.moviesService.getMovies().subscribe((movies: MovieI[]) => {
       this.movies = movies;
@@ -27,15 +31,23 @@ export class MoviesListComponent implements OnInit {
     });
   }
 
-  public filterMovies(selectedGenres: GenreI[]) {
-    if (selectedGenres.length === 0) {
-      this.filteredMovies = this.movies;
-    } else {
-      this.filteredMovies = this.movies.filter((movie) => {
-        return movie.genres.some((genreId) => {
-          return selectedGenres.some((selectedGenre) => selectedGenre._id === genreId);
-        })
-      })
-    }
+  private filterMovies() {
+    this.filteredMovies = this.movies.filter((movie) => {
+      const matchesSearchPhrase = this.searchedPhrase.length === 0 || movie.title.toLowerCase().includes(this.searchedPhrase);
+      const matchesGenres = this.selectedGenres.length === 0 || movie.genres.some((genreId) => this.selectedGenres.some((selectedGenre) => selectedGenre._id === genreId));
+      return matchesSearchPhrase && matchesGenres;
+    });
   }
+
+  public setGenres(selectedGenres: GenreI[]) {
+    this.selectedGenres = selectedGenres;
+    this.filterMovies();
+  }
+
+  public setSearchPhrase(searchedPhrase: string) {
+    this.searchedPhrase = searchedPhrase.toLowerCase().trim();
+    this.filterMovies();
+  }
+
+
 }

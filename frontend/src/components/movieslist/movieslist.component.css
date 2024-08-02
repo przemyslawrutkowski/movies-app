@@ -52,3 +52,7 @@ app-genreslist {
         grid-template-columns: repeat(2, 150px);
     }
 }
+
+.no-movies-found {
+    text-align: center;
+}

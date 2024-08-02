@@ -1,9 +1,11 @@
 <section id="movies-list">
-    <app-searchbar></app-searchbar>
-    <app-genreslist (genresChange)="filterMovies($event)"></app-genreslist>
+    <app-searchbar (searchPhraseChange)="setSearchPhrase($event)"></app-searchbar>
+    <app-genreslist (genresChange)="setGenres($event)"></app-genreslist>
     <div class="movies-list-container">
         @for(movieEntry of filteredMovies; track movieEntry._id) {
         <app-moviecard [movie]="movieEntry"></app-moviecard>
+        } @empty {
+        <p class="no-movies-found">No movies found</p>
         }
     </div>
 </section>
