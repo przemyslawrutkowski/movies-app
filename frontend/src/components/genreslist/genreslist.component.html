@@ -1,11 +1,15 @@
-<div class="genres-list-container">
-    <h3 class="genres-list-title">Genres</h3>
-    <ul class="genres-list">
-        @for(genreEntry of genres; track genreEntry._id) {
-        <li class="genre-item">
-            <input type="checkbox" id="genre-{{ genreEntry._id }}" class="genre-checkbox">
-            <label for="genre-{{ genreEntry._id }}" class="genre-label">{{ genreEntry.name }}</label>
-        </li>
-        }
-    </ul>
-</div>
+<form class="genres-filter-form">
+    <fieldset>
+        <legend>Genres</legend>
+        <ul class="genres-list">
+            @for(genreEntry of genres; track genreEntry._id) {
+            <li class="genre-item">
+                <input type="checkbox" [(ngModel)]="selectedGenres[genreEntry._id]"
+                    [ngModelOptions]="{standalone: true}" (change)="onGenreChange()" id="genre-{{ genreEntry._id }}"
+                    class="genre-checkbox">
+                <label for="genre-{{ genreEntry._id }}" class="genre-label">{{ genreEntry.name }}</label>
+            </li>
+            }
+        </ul>
+    </fieldset>
+</form>

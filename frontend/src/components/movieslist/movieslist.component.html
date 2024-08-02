@@ -1,8 +1,8 @@
 <section id="movies-list">
     <app-searchbar></app-searchbar>
-    <app-genreslist></app-genreslist>
+    <app-genreslist (genresChange)="filterMovies($event)"></app-genreslist>
     <div class="movies-list-container">
-        @for(movieEntry of movies; track movieEntry._id) {
+        @for(movieEntry of filteredMovies; track movieEntry._id) {
         <app-moviecard [movie]="movieEntry"></app-moviecard>
         }
     </div>
