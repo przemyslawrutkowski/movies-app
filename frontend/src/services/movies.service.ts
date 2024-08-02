@@ -8,7 +8,7 @@ import MovieI from '../interfaces/movie';
   providedIn: 'root'
 })
 export class MoviesService {
-  private url = 'http://localhost:3000/movies';
+  private url = 'http://localhost:3000/api/movies';
 
   constructor(private http: HttpClient) { }
 

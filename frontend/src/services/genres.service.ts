@@ -8,7 +8,7 @@ import GenreI from '../interfaces/genre';
   providedIn: 'root'
 })
 export class GenresService {
-  private url = 'http://localhost:3000/genres';
+  private url = 'http://localhost:3000/api/genres';
 
   constructor(private http: HttpClient) { }
 
