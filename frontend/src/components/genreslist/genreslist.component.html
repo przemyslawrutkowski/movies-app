@@ -6,7 +6,7 @@
             <li class="genre-item">
                 <input type="checkbox" [(ngModel)]="selectedGenres[genreEntry._id]"
                     [ngModelOptions]="{standalone: true}" (change)="onGenreChange()" id="genre-{{ genreEntry._id }}"
-                    class="genre-checkbox">
+                    class="genre-checkbox" />
                 <label for="genre-{{ genreEntry._id }}" class="genre-label">{{ genreEntry.name }}</label>
             </li>
             }

@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { moviesCollection } from '../db.js';
 import { Request, Response } from 'express';
 
@@ -13,6 +12,6 @@ export const getMovies = async (req: Request, res: Response) => {
         return res.json(movies);
     } catch (err) {
         console.error('Error fetching movies', err);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }

@@ -18,11 +18,10 @@ import { SearchBarComponent } from '../searchbar/searchbar.component';
 export class MoviesListComponent implements OnInit {
   private moviesService: MoviesService = inject(MoviesService);
   private movies: MovieI[] = [];
-  public filteredMovies: MovieI[] = [];
+  filteredMovies: MovieI[] = [];
 
   private selectedGenres: GenreI[] = [];
   private searchedPhrase: string = "";
-
 
   ngOnInit() {
     this.moviesService.getMovies().subscribe((movies: MovieI[]) => {
@@ -39,15 +38,13 @@ export class MoviesListComponent implements OnInit {
     });
   }
 
-  public setGenres(selectedGenres: GenreI[]) {
+  setGenres(selectedGenres: GenreI[]) {
     this.selectedGenres = selectedGenres;
     this.filterMovies();
   }
 
-  public setSearchPhrase(searchedPhrase: string) {
+  setSearchPhrase(searchedPhrase: string) {
     this.searchedPhrase = searchedPhrase.toLowerCase().trim();
     this.filterMovies();
   }
-
-
 }

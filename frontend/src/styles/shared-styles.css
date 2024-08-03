@@ -71,3 +71,7 @@ form button:hover {
 .account-navigation a {
     color: var(--d-color);
 }
+
+.error {
+    color: var(--error-color);
+}

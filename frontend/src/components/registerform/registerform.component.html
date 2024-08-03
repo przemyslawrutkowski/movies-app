@@ -1,21 +1,83 @@
-<form id="sign-up-form">
+<form id="sign-up-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <fieldset>
         <legend>Sign Up</legend>
         <p>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email">
+            <input type="email" id="email" placeholder="Enter your email" formControlName="email" required />
+            @if(email?.invalid && wasFormSubmitted){
+        <div class="errors">
+            @if(email?.hasError('required')) {
+            <div class="error">
+                Email is required.
+            </div>
+            } @else if(email?.hasError('email')) {
+            <div class="error">
+                Invalid email format.
+            </div>
+            }
+        </div>
+        }
         </p>
         <p>
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Choose a username">
+            <input type="text" id="username" placeholder="Choose a username" formControlName="username" required />
+            @if(username?.invalid && wasFormSubmitted){
+        <div class="errors">
+            @if(username?.hasError('required')) {
+            <div class="error">
+                Username is required.
+            </div>
+            } @else if(username?.hasError('minlength')) {
+            <div class="error">
+                Username must be at least 4 characters long.
+            </div>
+            } @else if(username?.hasError('maxlength')) {
+            <div class="error">
+                Username cannot be more than 12 characters long.
+            </div>
+            }
+        </div>
+        }
         </p>
         <p>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter your password">
+            <input type="password" id="password" placeholder="Enter your password" formControlName="password"
+                required />
+            @if(password?.invalid && wasFormSubmitted){
+        <div class="errors">
+            @if(password?.hasError('required')) {
+            <div class="error">
+                Password is required.
+            </div>
+            } @else if(password?.hasError('minlength')) {
+            <div class="error">
+                Password must be at least 8 characters long.
+            </div>
+            } @else if(password?.hasError('maxlength')) {
+            <div class="error">
+                Password cannot be more than 128 characters long.
+            </div>
+            }
+        </div>
+        }
         </p>
         <p>
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm your password">
+            <label for="confirm-password">Password Confirm</label>
+            <input type="password" id="confirm-password" placeholder="Confirm your password"
+                formControlName="passwordConfirm" required />
+            @if((registerForm.invalid || passwordConfirm?.invalid) && wasFormSubmitted){
+        <div class="errors">
+            @if(registerForm.hasError('mismatch')) {
+            <div class="error">
+                Passwords do not match.
+            </div>
+            } @else if(passwordConfirm?.hasError('required')){
+            <div class="error">
+                Password confirmation is required.
+            </div>
+            }
+        </div>
+        }
         </p>
         <p class="submit-button-container">
             <button type="submit">Sign Up</button>

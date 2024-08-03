@@ -63,5 +63,5 @@ nav a {
 
 .sign-up:hover {
     background-color: var(--a-color);
-    color: var(--b-bg-color);
+    color: var(--a-bg-color);
 }

@@ -1,13 +1,48 @@
-<form id="sign-in-form">
+<form id="sign-in-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <fieldset>
         <legend>Sign In</legend>
         <p>
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Choose a username">
+            <input type="text" id="username" placeholder="Choose a username" formControlName="username" required />
+            @if(username?.invalid && wasFormSubmitted){
+        <div class="errors">
+            @if(username?.hasError('required')) {
+            <div class="error">
+                Username is required.
+            </div>
+            } @else if(username?.hasError('minlength')) {
+            <div class="error">
+                Username must be at least 4 characters long.
+            </div>
+            } @else if(username?.hasError('maxlength')) {
+            <div class="error">
+                Username cannot be more than 12 characters long.
+            </div>
+            }
+        </div>
+        }
         </p>
         <p>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter your password">
+            <input type="password" id="password" placeholder="Enter your password" formControlName="password"
+                required />
+            @if(password?.invalid && wasFormSubmitted){
+        <div class="errors">
+            @if(password?.hasError('required')) {
+            <div class="error">
+                Password is required.
+            </div>
+            } @else if(password?.hasError('minlength')) {
+            <div class="error">
+                Password must be at least 8 characters long.
+            </div>
+            } @else if(password?.hasError('maxlength')) {
+            <div class="error">
+                Password cannot be more than 128 characters long.
+            </div>
+            }
+        </div>
+        }
         </p>
         <p class="submit-button-container">
             <button type="submit">Sign In</button>

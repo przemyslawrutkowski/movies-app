@@ -12,7 +12,7 @@ export class GenresService {
 
   constructor(private http: HttpClient) { }
 
-  public getGenres(): Observable<GenreI[]> {
+  getGenres(): Observable<GenreI[]> {
     return this.http.get<GenreI[]>(this.url)
   }
 }

@@ -14,8 +14,8 @@ import { GenresService } from '../../services/genres.service';
 })
 export class GenresListComponent implements OnInit {
   private genresService: GenresService = inject(GenresService);
-  public genres: GenreI[] = [];
-  public selectedGenres: { [key: string]: boolean } = {};
+  genres: GenreI[] = [];
+  selectedGenres: { [key: string]: boolean } = {};
 
   @Output() genresChange = new EventEmitter<GenreI[]>();
 
@@ -28,7 +28,7 @@ export class GenresListComponent implements OnInit {
     });
   }
 
-  public onGenreChange() {
+  onGenreChange() {
     const selectedGenres = this.genres.filter((genre) => this.selectedGenres[genre._id]);
     this.genresChange.emit(selectedGenres);
   }

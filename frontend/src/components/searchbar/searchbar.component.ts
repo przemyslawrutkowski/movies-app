@@ -9,11 +9,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './searchbar.component.css'
 })
 export class SearchBarComponent {
-  public searchPhrase: string = "";
+  searchPhrase: string = "";
 
   @Output() searchPhraseChange = new EventEmitter<string>();
 
-  public onSearchPhraseChange() {
+  onSearchPhraseChange() {
     this.searchPhraseChange.emit(this.searchPhrase);
   }
 }

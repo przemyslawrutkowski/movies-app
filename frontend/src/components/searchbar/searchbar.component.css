@@ -12,7 +12,7 @@ input {
     border: none;
 }
 
-input[type="text"]:focus {
+input[type="search"]:focus {
     outline: none;
     border: 1px solid var(--a-color);
 }
