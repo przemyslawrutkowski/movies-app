@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -9,10 +9,9 @@ import GenreI from '../interfaces/genre';
 })
 export class GenresService {
   private url = 'http://localhost:3000/api/genres';
-
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   getGenres(): Observable<GenreI[]> {
-    return this.http.get<GenreI[]>(this.url)
+    return this.http.get<GenreI[]>(this.url);
   }
 }

@@ -4,6 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import LoginCredentialsI from '../../interfaces/loginCredentials';
+import { LocalStorageService } from '../../services/localstorage.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loginform',
@@ -13,7 +16,10 @@ import LoginCredentialsI from '../../interfaces/loginCredentials';
   styleUrl: '../../styles/shared-styles.css'
 })
 export class LoginFormComponent {
-  private usersService: UsersService = inject(UsersService);
+  private usersService = inject(UsersService);
+  private authService = inject(AuthService);
+  private localStorageService = inject(LocalStorageService);
+  private router = inject(Router);
   loginForm: FormGroup;
   wasFormSubmitted = false;
 
@@ -47,7 +53,11 @@ export class LoginFormComponent {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password
       };
-      this.usersService.signIn(credentials);
+      this.usersService.signIn(credentials).subscribe(jwt => {
+        this.localStorageService.set('jwt', JSON.stringify(jwt));
+        this.authService.changeLoginStatus(true);
+        this.router.navigate(['/']);
+      });
     }
   }
 }

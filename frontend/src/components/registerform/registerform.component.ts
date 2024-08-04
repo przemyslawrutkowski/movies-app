@@ -14,7 +14,7 @@ import RegisterCredentialsI from '../../interfaces/registerCredentials';
   styleUrl: '../../styles/shared-styles.css'
 })
 export class RegisterFormComponent {
-  private usersService: UsersService = inject(UsersService);
+  private usersService = inject(UsersService);
   registerForm: FormGroup;
   wasFormSubmitted = false;
 
@@ -77,7 +77,9 @@ export class RegisterFormComponent {
         password: this.registerForm.value.password,
         passwordConfirm: this.registerForm.value.passwordConfirm
       };
-      this.usersService.signUp(credentials);
+      this.usersService.signUp(credentials).subscribe(_id => {
+        console.log(`Created user with id: ${_id}.`);
+      });
     }
   }
 }
