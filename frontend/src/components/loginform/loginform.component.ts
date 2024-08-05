@@ -7,6 +7,7 @@ import LoginCredentialsI from '../../interfaces/loginCredentials';
 import { LocalStorageService } from '../../services/localstorage.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-loginform',
@@ -22,6 +23,7 @@ export class LoginFormComponent {
   private router = inject(Router);
   loginForm: FormGroup;
   wasFormSubmitted = false;
+  loginError: string | null = null;
 
   constructor() {
     this.loginForm = new FormGroup({
@@ -53,10 +55,17 @@ export class LoginFormComponent {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password
       };
-      this.usersService.signIn(credentials).subscribe(jwt => {
-        this.localStorageService.set('jwt', JSON.stringify(jwt));
-        this.authService.changeLoginStatus(true);
-        this.router.navigate(['/']);
+      this.usersService.signIn(credentials).subscribe({
+        next: jwt => {
+          this.localStorageService.set('jwt', JSON.stringify(jwt));
+          this.authService.changeLoginStatus(true);
+          this.router.navigate(['/']);
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.status === 404 || err.status === 401) {
+            this.loginError = err.error.message ?? 'Invalid credentials.';
+          }
+        }
       });
     }
   }

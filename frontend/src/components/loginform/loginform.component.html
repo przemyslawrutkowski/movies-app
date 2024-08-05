@@ -5,21 +5,19 @@
             <label for="username">Username</label>
             <input type="text" id="username" placeholder="Choose a username" formControlName="username" required />
             @if(username?.invalid && wasFormSubmitted){
-        <div class="errors">
             @if(username?.hasError('required')) {
-            <div class="error">
-                Username is required.
-            </div>
-            } @else if(username?.hasError('minlength')) {
-            <div class="error">
-                Username must be at least 4 characters long.
-            </div>
-            } @else if(username?.hasError('maxlength')) {
-            <div class="error">
-                Username cannot be more than 12 characters long.
-            </div>
-            }
+        <div class="error">
+            Username is required.
         </div>
+        } @else if(username?.hasError('minlength')) {
+        <div class="error">
+            Username must be at least 4 characters long.
+        </div>
+        } @else if(username?.hasError('maxlength')) {
+        <div class="error">
+            Username cannot be more than 12 characters long.
+        </div>
+        }
         }
         </p>
         <p>
@@ -27,21 +25,19 @@
             <input type="password" id="password" placeholder="Enter your password" formControlName="password"
                 required />
             @if(password?.invalid && wasFormSubmitted){
-        <div class="errors">
             @if(password?.hasError('required')) {
-            <div class="error">
-                Password is required.
-            </div>
-            } @else if(password?.hasError('minlength')) {
-            <div class="error">
-                Password must be at least 8 characters long.
-            </div>
-            } @else if(password?.hasError('maxlength')) {
-            <div class="error">
-                Password cannot be more than 128 characters long.
-            </div>
-            }
+        <div class="error">
+            Password is required.
         </div>
+        } @else if(password?.hasError('minlength')) {
+        <div class="error">
+            Password must be at least 8 characters long.
+        </div>
+        } @else if(password?.hasError('maxlength')) {
+        <div class="error">
+            Password cannot be more than 128 characters long.
+        </div>
+        }
         }
         </p>
         <p class="submit-button-container">
@@ -50,5 +46,8 @@
         <p class="account-navigation">
             Don't have an account? <a [routerLink]="['/register']">Sign Up</a>
         </p>
+        @if(loginError){
+        <div class="operation-result error">{{ loginError }}</div>
+        }
     </fieldset>
 </form>

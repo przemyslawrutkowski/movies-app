@@ -18,12 +18,12 @@ export const signIn = async (req: Request, res: Response) => {
 
         const user = await usersCollection.findOne({ username: credentials.username });
         if (!user) {
-            return res.status(404).json({ message: 'User not found.' });
+            return res.status(404).json({ message: 'Invalid credentials.' });
         }
 
         const isValid = await comparePasswords(credentials.password, user.password);
         if (!isValid) {
-            return res.status(401).json({ message: 'Invalid password.' });
+            return res.status(401).json({ message: 'Invalid credentials.' });
         }
 
         const jwt = generateJWT(user as unknown as UserI);
@@ -48,9 +48,14 @@ export const signUp = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
 
-        const countUsers = await usersCollection.countDocuments({ email: credentials.email, username: credentials.username });
-        if (countUsers > 0) {
-            return res.status(409).json({ message: 'User already exists.' });
+        const countUsersByEmail = await usersCollection.countDocuments({ email: credentials.email });
+        if (countUsersByEmail > 0) {
+            return res.status(409).json({ message: 'User with specified email already exists.' });
+        }
+
+        const countUsersByUsername = await usersCollection.countDocuments({ username: credentials.username });
+        if (countUsersByUsername > 0) {
+            return res.status(409).json({ message: 'User with specified username already exists.' });
         }
 
         const hashedPassword = await hashPassword(credentials.password);

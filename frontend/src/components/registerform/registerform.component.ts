@@ -5,6 +5,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import passwordMatchValidator from '../../validators/passwordMatchValidator';
 import { UsersService } from '../../services/users.service';
 import RegisterCredentialsI from '../../interfaces/registerCredentials';
+import { HttpErrorResponse } from '@angular/common/http';
+
+interface RegisterResultI {
+  status: 'success' | 'error';
+  message: string;
+}
 
 @Component({
   selector: 'app-registerform',
@@ -17,6 +23,7 @@ export class RegisterFormComponent {
   private usersService = inject(UsersService);
   registerForm: FormGroup;
   wasFormSubmitted = false;
+  registerResult: RegisterResultI | null = null;
 
   constructor() {
     this.registerForm = new FormGroup({
@@ -77,8 +84,22 @@ export class RegisterFormComponent {
         password: this.registerForm.value.password,
         passwordConfirm: this.registerForm.value.passwordConfirm
       };
-      this.usersService.signUp(credentials).subscribe(_id => {
-        console.log(`Created user with id: ${_id}.`);
+      this.usersService.signUp(credentials).subscribe({
+        next: _id => {
+          console.log(`Created user with id: ${_id}.`);
+          this.registerResult = {
+            status: 'success',
+            message: 'User created successfully.'
+          };
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.status === 409) {
+            this.registerResult = {
+              status: 'error',
+              message: err.error.message ?? 'User with specified email or username already exists.'
+            };
+          }
+        }
       });
     }
   }
