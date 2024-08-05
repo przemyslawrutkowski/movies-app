@@ -10,7 +10,13 @@
     height: 350px;
 }
 
-.movie-information {
+.poster-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
     max-width: 400px;
     padding: 0 0.5rem;
     display: flex;
@@ -18,22 +24,10 @@
     gap: 0.5rem;
 }
 
-.poster-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.title {
+h2 {
     font-size: 2rem;
 }
 
-.meta,
-.genres,
-.directors strong,
-.writers strong,
-.actors strong,
-.counteries strong,
-.awards strong {
+strong {
     color: var(--b-color);
 }

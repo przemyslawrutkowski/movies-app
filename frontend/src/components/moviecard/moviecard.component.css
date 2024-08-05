@@ -33,14 +33,14 @@
     opacity: 1;
 }
 
-.title {
+h4 {
     font-size: 1.1rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.details {
+.info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

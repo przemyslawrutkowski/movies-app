@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import LoginCredentialsI from '../interfaces/loginCredentials';
 import RegisterCredentialsI from '../interfaces/registerCredentials';
-import { LocalStorageService } from './localstorage.service';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'

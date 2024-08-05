@@ -16,21 +16,21 @@ legend {
     margin: 0 auto;
 }
 
-form p {
+p {
     margin-bottom: 1rem;
 }
 
-form p:last-child {
+p:last-child {
     margin-bottom: 0;
 }
 
-form label,
-form input {
+label,
+input {
     display: block;
     width: 100%;
 }
 
-form input {
+input {
     font-size: 0.9rem;
     padding: 0.75rem;
     width: 100%;
@@ -47,7 +47,7 @@ input[type="password"]:focus {
     border: 1px solid var(--a-color);
 }
 
-form button {
+button {
     color: var(--a-color);
     background-color: inherit;
     font-size: 1rem;
@@ -58,7 +58,7 @@ form button {
     cursor: pointer;
 }
 
-form button:hover {
+button:hover {
     background-color: var(--a-color);
     color: var(--a-bg-color);
 }

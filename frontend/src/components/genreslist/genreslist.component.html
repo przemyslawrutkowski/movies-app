@@ -1,13 +1,12 @@
-<form class="genres-filter-form">
+<form id="genres-filter-form">
     <fieldset>
         <legend>Genres</legend>
-        <ul class="genres-list">
+        <ul>
             @for(genreEntry of genres; track genreEntry._id) {
-            <li class="genre-item">
-                <input type="checkbox" [(ngModel)]="selectedGenres[genreEntry._id]"
-                    [ngModelOptions]="{standalone: true}" (change)="onGenreChange()" id="genre-{{ genreEntry._id }}"
-                    class="genre-checkbox" />
-                <label for="genre-{{ genreEntry._id }}" class="genre-label">{{ genreEntry.name }}</label>
+            <li>
+                <input type="checkbox" [(ngModel)]="selectedGenres[genreEntry._id]" (change)="onGenreChange()"
+                    id="genre-{{ genreEntry._id }}" name="genre-{{ genreEntry._id }}" />
+                <label for="genre-{{ genreEntry._id }}">{{ genreEntry.name }}</label>
             </li>
             }
         </ul>

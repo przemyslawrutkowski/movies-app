@@ -25,6 +25,11 @@ app-genreslist {
     gap: 2rem;
 }
 
+.no-movies-found {
+    grid-column: span 4;
+    text-align: center;
+}
+
 @media(width < 768px) {
     #movies-list {
         grid-template-columns: repeat(3, 150px);
@@ -36,6 +41,10 @@ app-genreslist {
 
     .movies-list-container {
         grid-template-columns: repeat(3, 150px);
+    }
+
+    .no-movies-found {
+        grid-column: span 3;
     }
 }
 
@@ -51,8 +60,8 @@ app-genreslist {
     .movies-list-container {
         grid-template-columns: repeat(2, 150px);
     }
-}
 
-.no-movies-found {
-    text-align: center;
+    .no-movies-found {
+        grid-column: span 2;
+    }
 }

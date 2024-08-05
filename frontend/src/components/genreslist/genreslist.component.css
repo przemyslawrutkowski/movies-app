@@ -1,4 +1,4 @@
-.genres-list {
+ul {
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(4, 150px);
@@ -19,18 +19,18 @@ legend {
 }
 
 @media(width < 768px) {
-    .genres-list {
+    ul {
         grid-template-columns: repeat(3, 150px);
     }
 }
 
 @media(width < 576px) {
-    .genres-list {
+    ul {
         grid-template-columns: repeat(2, 150px);
     }
 }
 
-.genre-item {
+li {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -38,20 +38,17 @@ legend {
     gap: 0.5rem;
 }
 
-.genre-label {
+label {
     font-size: 1.2rem;
     color: var(--b-color);
     cursor: pointer;
 }
 
-.genre-checkbox:checked+.genre-label {
+input[type="checkbox"]:checked+label {
     color: var(--d-color);
 }
 
-.genre-checkbox:checked {
+input[type="checkbox"] {
     accent-color: var(--d-color);
-}
-
-.genre-checkbox:hover {
     cursor: pointer;
 }
