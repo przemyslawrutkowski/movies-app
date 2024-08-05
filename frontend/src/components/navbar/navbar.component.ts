@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent {
   private localStorageService = inject(LocalStorageService);
   private authService: AuthService = inject(AuthService);
-  isLoggedIn = this.localStorageService.get('jwt') !== null;
+  isLoggedIn = false;
 
   constructor() {
     effect(() => {

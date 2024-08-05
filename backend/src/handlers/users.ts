@@ -45,12 +45,12 @@ export const signUp = async (req: Request, res: Response) => {
         };
 
         if (!credentials.email || !credentials.password) {
-            return res.status(400).json({ message: 'Email and password are required' });
+            return res.status(400).json({ message: 'Email and password are required.' });
         }
 
         const countUsers = await usersCollection.countDocuments({ email: credentials.email, username: credentials.username });
         if (countUsers > 0) {
-            return res.status(409).json({ message: 'User already exists' });
+            return res.status(409).json({ message: 'User already exists.' });
         }
 
         const hashedPassword = await hashPassword(credentials.password);
@@ -58,6 +58,6 @@ export const signUp = async (req: Request, res: Response) => {
         return res.json(result.insertedId);
     } catch (err) {
         console.error('Error signing up', err);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error.' });
     }
 };

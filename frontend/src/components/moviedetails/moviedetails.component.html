@@ -1,0 +1,30 @@
+@if(movie){
+<section id="movie-details">
+    <div class="poster-container">
+        <img src="{{movie.poster}}" alt="{{ movie.title }} poster">
+    </div>
+    <div class="movie-information">
+        <h2 class="title">{{ movie.title }}</h2>
+        <p class="meta">
+            <strong>{{ movie.rating !== null ? movie.rating : 'No rating yet' }}, </strong>
+            <strong>{{ movie.runtime }}, </strong>
+            <strong>{{ movie.year }}</strong>
+        </p>
+        <p class="genres">
+            @for(genreEntry of genres; track genreEntry._id; let last = $last){
+            @if(!last){
+            <strong>{{genreEntry.name}}, </strong>
+            } @else{
+            <strong>{{genreEntry.name}}</strong>
+            }
+            }
+        </p>
+        <p>{{ movie.plot }}</p>
+        <p class="directors"><strong>Directors:</strong> {{ movie.directors.join(', ') }}</p>
+        <p class="writers"><strong>Writers:</strong> {{ movie.writers.join(', ') }}</p>
+        <p class="actors"><strong>Actors:</strong> {{ movie.actors.join(', ') }}</p>
+        <p class="counteries"><strong>Countries:</strong> {{ movie.countries.join(', ') }}</p>
+        <p class="awards"><strong>Awards:</strong> {{ movie.awards }}</p>
+    </div>
+</section>
+}

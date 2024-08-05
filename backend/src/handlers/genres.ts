@@ -12,7 +12,6 @@ export const getGenres = async (req: Request, res: Response) => {
         return res.json(genres);
     } catch (err) {
         console.error('Error fetching genres', err);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error.' });
     }
-
-}
+};

@@ -1,5 +1,6 @@
 import { moviesCollection } from '../db.js';
 import { Request, Response } from 'express';
+import { ObjectId } from 'mongodb';
 
 export const getMovies = async (req: Request, res: Response) => {
     try {
@@ -12,6 +13,24 @@ export const getMovies = async (req: Request, res: Response) => {
         return res.json(movies);
     } catch (err) {
         console.error('Error fetching movies', err);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error.' });
     }
-}
+};
+
+export const getMovie = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+
+        if (!id) {
+            return res.status(400).json({ message: 'Movie id is required.' });
+        }
+
+        const objectId = new ObjectId(id);
+        const movie = await moviesCollection.findOne({ _id: objectId });
+
+        return res.json(movie);
+    } catch (err) {
+        console.error('Error fetching movie', err);
+        res.status(500).json({ message: 'Internal Server Error.' });
+    }
+};

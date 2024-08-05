@@ -35,7 +35,7 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
 
     const token = bearer.split(' ')[1];
     if (!token) {
-        return res.status(401).json({ message: 'Invalid token format' });
+        return res.status(401).json({ message: 'Invalid token format.' });
     }
 
     try {
@@ -44,6 +44,6 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
         next();
     } catch (err) {
         console.error(err);
-        return res.status(401).json({ message: 'Invalid token' });
+        return res.status(401).json({ message: 'Invalid token.' });
     }
 }
