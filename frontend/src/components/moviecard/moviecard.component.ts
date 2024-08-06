@@ -13,5 +13,5 @@ import MovieI from '../../interfaces/movie';
 export class MovieCardComponent {
   @Input({
     required: true
-  }) public movie!: MovieI;
+  }) movie!: MovieI;
 }

@@ -28,17 +28,17 @@ export const generateJWT = (user: UserI) => {
 };
 
 export const protect = (req: Request, res: Response, next: NextFunction) => {
-    const bearer = req.headers.authorization;
-    if (!bearer) {
-        return res.status(401).json({ message: 'No token provided.' });
-    }
-
-    const token = bearer.split(' ')[1];
-    if (!token) {
-        return res.status(401).json({ message: 'Invalid token format.' });
-    }
-
     try {
+        const bearer = req.headers.authorization;
+        if (!bearer) {
+            return res.status(401).json({ message: 'No token provided.' });
+        }
+
+        const token = bearer.split(' ')[1].replace(/"/g, '');
+        if (!token) {
+            return res.status(401).json({ message: 'Invalid token format.' });
+        }
+
         const payload = jwt.verify(token, secretKey);
         req.body.payload = payload;
         next();

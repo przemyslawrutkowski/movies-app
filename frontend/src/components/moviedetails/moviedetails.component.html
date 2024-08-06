@@ -28,5 +28,9 @@
         <p><strong>Countries:</strong> {{ movie.countries.join(', ') }}</p>
         <p><strong>Awards:</strong> {{ movie.awards }}</p>
     </div>
+    <app-reviewform [movieId]="movieId"></app-reviewform>
+    @if(reviews){
+    <app-reviewslist [reviews]="reviews"></app-reviewslist>
+    }
 </section>
 }

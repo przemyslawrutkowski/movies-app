@@ -1,0 +1,5 @@
+<section id="reviews">
+    @for(reviewEntry of reviews; track reviewEntry._id) {
+    <app-review [review]="reviewEntry"></app-review>
+    }
+</section>

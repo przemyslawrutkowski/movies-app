@@ -46,5 +46,6 @@ const database = client.db(process.env.DB_NAME);
 const moviesCollection = database.collection("movies");
 const genresCollection = database.collection("genres");
 const usersCollection = database.collection("users");
+const reviewsCollection = database.collection("reviews");
 
-export { moviesCollection, genresCollection, usersCollection };
+export { moviesCollection, genresCollection, usersCollection, reviewsCollection };

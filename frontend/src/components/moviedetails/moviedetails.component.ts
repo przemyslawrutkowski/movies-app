@@ -1,22 +1,28 @@
 import { Component, Input, inject, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
+import { ReviewsService } from '../../services/reviews.service';
+import { GenresService } from '../../services/genres.service';
 import MovieI from '../../interfaces/movie';
 import GenreI from '../../interfaces/genre';
-import { GenresService } from '../../services/genres.service';
+import ReviewI from '../../interfaces/review';
+import { ReviewsListComponent } from '../reviewslist/reviewslist.component';
+import { ReviewFormComponent } from '../reviewform/reviewform.component';
 
 @Component({
   selector: 'app-moviedetails',
   standalone: true,
-  imports: [],
+  imports: [ReviewsListComponent, ReviewFormComponent],
   templateUrl: './moviedetails.component.html',
   styleUrl: './moviedetails.component.css'
 })
 export class MovieDetailsComponent implements OnInit {
   private moviesService = inject(MoviesService);
   private genresService = inject(GenresService);
+  private reviewsService = inject(ReviewsService);
   movieId = '';
   movie!: MovieI;
   genres!: GenreI[];
+  reviews!: ReviewI[];
 
   @Input() set id(id: string) {
     this.movieId = id;
@@ -30,6 +36,10 @@ export class MovieDetailsComponent implements OnInit {
           return this.movie.genres.includes(genre._id);
         });
       });
+    });
+
+    this.reviewsService.getReviews(this.movieId).subscribe((reviews: ReviewI[]) => {
+      this.reviews = reviews;
     });
   }
 }

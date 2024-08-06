@@ -1,0 +1,43 @@
+<form id="reviews-form" #reviewForm="ngForm" (ngSubmit)="addReview(reviewForm)">
+    <fieldset>
+        <legend>Add Review</legend>
+        <p>
+            <label for="content">What do You think of this movie?</label>
+            <textarea id="content" name="content" [(ngModel)]="reviewContent" #content="ngModel" rows="5" required
+                minlength="3" maxlength="100"></textarea>
+            @if(content.invalid) {
+            @if(content.hasError('required')){
+        <div class=" error">
+            Review content is required.
+        </div>
+        }@else if(content.hasError('minlength')){
+        <div class=" error">
+            Review content must be at least 3 characters long.
+        </div>
+        }@else if(content.hasError('maxlength')){
+        <div class="error">
+            Review content cannot be more than 100 characters long.
+        </div>
+        }
+        }
+        </p>
+        <p>
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" [(ngModel)]="movieRating" #rating="ngModel" required>
+                @for(ratingEntry of ratings; track $index){
+                <option [value]="ratingEntry">{{ ratingEntry }}</option>
+                }
+            </select>
+            @if(rating.invalid) {
+            @if(rating.hasError('required')){
+        <div class=" error">
+            Rating is required.
+        </div>
+        }
+        }
+        </p>
+        <p class="submit-button-container">
+            <button type="submit">Add</button>
+        </p>
+    </fieldset>
+</form>
