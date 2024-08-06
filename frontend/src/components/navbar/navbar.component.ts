@@ -19,6 +19,10 @@ export class NavbarComponent {
     effect(() => {
       this.isLoggedIn = this.authService.loginStatus();
     });
+    const token = this.localStorageService.get('jwt');
+    if (token) {
+      this.authService.changeLoginStatus(true);
+    }
   }
 
   onLogout() {
