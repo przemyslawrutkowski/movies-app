@@ -25,8 +25,7 @@ export const getMovie = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'Movie id is required.' });
         }
 
-        const objectId = new ObjectId(id);
-        const movie = await moviesCollection.findOne({ _id: objectId });
+        const movie = await moviesCollection.findOne({ _id: new ObjectId(id) });
 
         return res.json(movie);
     } catch (err) {

@@ -16,8 +16,8 @@ export class ReviewFormComponent {
   private reviewsService = inject(ReviewsService);
   private router = inject(Router);
   ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  reviewContent: string = "It was a great movie...";
-  movieRating: number = 10;
+  reviewContent = "It was a great movie...";
+  movieRating = 10;
 
   @Input({
     required: true
@@ -27,10 +27,10 @@ export class ReviewFormComponent {
     if (reviewForm.valid) {
       const review: NewReviewI = {
         movieId: this.movieId,
-        rating: this.movieRating,
+        rating: Number(this.movieRating),
         content: this.reviewContent,
-        creationDate: new Date()
-      }
+        creationDate: new Date().toISOString()
+      };
       this.reviewsService.postReview(review).subscribe({
         next: _id => {
           console.log(`Created review with id: ${_id}.`);

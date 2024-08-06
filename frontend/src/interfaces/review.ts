@@ -5,5 +5,5 @@ export default interface ReviewI {
     userUsername: string;
     rating: number;
     content: string;
-    creationDate: Date;
+    creationDate: string;
 }
