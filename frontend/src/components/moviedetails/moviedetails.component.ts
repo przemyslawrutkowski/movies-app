@@ -7,11 +7,12 @@ import GenreI from '../../interfaces/genre';
 import ReviewI from '../../interfaces/review';
 import { ReviewsListComponent } from '../reviewslist/reviewslist.component';
 import { ReviewFormComponent } from '../reviewform/reviewform.component';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-moviedetails',
   standalone: true,
-  imports: [ReviewsListComponent, ReviewFormComponent],
+  imports: [ReviewsListComponent, ReviewFormComponent, DecimalPipe],
   templateUrl: './moviedetails.component.html',
   styleUrl: './moviedetails.component.css'
 })
@@ -47,6 +48,10 @@ export class MovieDetailsComponent implements OnInit {
     if (newReviewAdded) {
       this.reviewsService.getReviews(this.movieId).subscribe((reviews: ReviewI[]) => {
         this.reviews = reviews;
+      });
+
+      this.moviesService.getMovie(this.movieId).subscribe((movie: MovieI) => {
+        this.movie = movie;
       });
     }
   }
