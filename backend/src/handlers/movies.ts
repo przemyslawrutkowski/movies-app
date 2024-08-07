@@ -7,7 +7,11 @@ export const getMovies = async (req: Request, res: Response) => {
         const cursor = moviesCollection.find();
         const movies = [];
         for await (const movie of cursor) {
-            movies.push(movie);
+            movies.push({
+                ...movie,
+                _id: movie._id.toString(),
+                genres: movie.genres.map(genre => genre.toString())
+            });
         }
         await cursor.close();
         return res.json(movies);
@@ -27,7 +31,10 @@ export const getMovie = async (req: Request, res: Response) => {
 
         const movie = await moviesCollection.findOne({ _id: new ObjectId(id) });
 
-        return res.json(movie);
+        return res.json({
+            ...movie,
+            _id: movie?._id.toString()
+        });
     } catch (err) {
         console.error('Error fetching movie', err);
         res.status(500).json({ message: 'Internal Server Error.' });

@@ -60,7 +60,7 @@ export const signUp = async (req: Request, res: Response) => {
 
         const hashedPassword = await hashPassword(credentials.password);
         const result = await usersCollection.insertOne({ email: credentials.email, username: credentials.username, password: hashedPassword });
-        return res.json(result.insertedId);
+        return res.json(result.insertedId.toString());
     } catch (err) {
         console.error('Error signing up', err);
         res.status(500).json({ message: 'Internal Server Error.' });

@@ -1,12 +1,12 @@
 import { ObjectId } from "mongodb";
 
 export default interface MovieI {
-    _id?: ObjectId;
+    _id?: ObjectId | string;
     title: string;
     year: string;
     released: string;
     runtime: string;
-    genres: ObjectId[];
+    genres: ObjectId[] | string[];
     directors: string[];
     writers: string[];
     actors: string[];

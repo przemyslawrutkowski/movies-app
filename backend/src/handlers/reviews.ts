@@ -23,7 +23,11 @@ export const getReviews = async (req: Request, res: Response) => {
             const user = await usersCollection.findOne({ _id: review.userId });
             return {
                 ...review,
-                username: user?.username
+                _id: review._id.toString(),
+                movieId: review.movieId.toString(),
+                userId: review.userId.toString(),
+                userUsername: user?.username,
+                creationDate: (review.creationDate as Date).toISOString()
             };
         }));
 
@@ -36,7 +40,6 @@ export const getReviews = async (req: Request, res: Response) => {
 
 export const createReview = async (req: Request, res: Response) => {
     try {
-        console.log(req.body);
         const review: NewReviewI = {
             movieId: req.body.movieId,
             rating: req.body.rating,

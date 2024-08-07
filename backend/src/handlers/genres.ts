@@ -6,7 +6,10 @@ export const getGenres = async (req: Request, res: Response) => {
         const cursor = genresCollection.find();
         const genres = [];
         for await (const genre of cursor) {
-            genres.push(genre);
+            genres.push({
+                ...genre,
+                _id: genre._id.toString()
+            });
         }
         await cursor.close();
         return res.json(genres);

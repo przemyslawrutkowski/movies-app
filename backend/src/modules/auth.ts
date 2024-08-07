@@ -21,7 +21,7 @@ export const hashPassword = (password: string) => {
 
 export const generateJWT = (user: UserI) => {
     return jwt.sign({
-        _id: user._id,
+        _id: user._id?.toString(),
         email: user.email,
         username: user.username
     }, secretKey);
