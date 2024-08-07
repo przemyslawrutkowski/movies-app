@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import NewReviewI from '../../interfaces/newReview';
 import { ReviewsService } from '../../services/reviews.service';
@@ -18,6 +18,7 @@ export class ReviewFormComponent {
   ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   reviewContent = "It was a great movie...";
   movieRating = 10;
+  @Output() newReviewAdded = new EventEmitter<boolean>();
 
   @Input({
     required: true
@@ -34,6 +35,7 @@ export class ReviewFormComponent {
       this.reviewsService.postReview(review).subscribe({
         next: _id => {
           console.log(`Created review with id: ${_id}.`);
+          this.newReviewAdded.emit(true);
         },
         error: (err: HttpErrorResponse) => {
           if (err.status === 401) {

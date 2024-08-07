@@ -42,4 +42,12 @@ export class MovieDetailsComponent implements OnInit {
       this.reviews = reviews;
     });
   }
+
+  refreshReviews(newReviewAdded: boolean) {
+    if (newReviewAdded) {
+      this.reviewsService.getReviews(this.movieId).subscribe((reviews: ReviewI[]) => {
+        this.reviews = reviews;
+      });
+    }
+  }
 }
