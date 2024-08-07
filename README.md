@@ -35,7 +35,8 @@ This is a web page project dedicated to movies. It allows users to search for in
 `MONGODB_URI = 'your_mongodb_uri_here'`  
 `DB_NAME = 'your_database_name_here'`  
 `PORT = your_port_here`  
-`SECRET_KEY='your_secret_key_here'`  
-5. Run the main script in the backend part: `node ./dist/index.js`
-6. Build and serve the app in the frontend part: `ng serve`
-7. Open `localhost:4200` in a browser
+`SECRET_KEY='your_secret_key_here'`
+5. Import data from the `database-data` directory into your database. You should create the following collections in it: `genres, movies, reviews, users`.
+6. Run the main script in the backend part: `node ./dist/index.js`
+7. Build and serve the app in the frontend part: `ng serve`
+8. Open `localhost:4200` in a browser
